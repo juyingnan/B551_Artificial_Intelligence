@@ -1,4 +1,6 @@
 # B551_Artificial_Intelligence
-*IU B551 Artificial Intelligence
-*Assignments and Projects
+IU B551
+-------------
+Assignments and Projects&copy;  
+
 *And some ideas if any
