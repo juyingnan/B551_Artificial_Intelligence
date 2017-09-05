@@ -52,10 +52,10 @@ def successors2(board):
 
 # Get list of successors of given board state, A MUCH BETTER SOLUTION
 def successors3(board):
-    r = count_pieces(board)
-    return [add_piece(board, r, c) for c in range(0, N) \
-        if count_on_col(board, c) == 0]\
-        if r < N else []
+    c = count_pieces(board)
+    return [add_piece(board, r, c) for r in range(0, N) \
+        if count_on_row(board, r) == 0]\
+        if c < N else []
 
 # check if board is a goal state
 def is_goal(board):
