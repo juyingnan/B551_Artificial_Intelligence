@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # nrooks.py : Solve the N-Rooks problem!
 # D. Crandall, 2016
 # Updated by Zehua Zhang, 2017
@@ -27,13 +27,6 @@ def printable_board(board):
 
 # Add a piece to the board at the given position, and return a new board (doesn't change original)
 def add_piece(board, row, col):
-    # print (board[0:row])
-    # print (board[row][0:col])
-    # print ([1,])
-    # print (board[row][col+1:])
-    # print ([board[row][0:col] + [1,] + board[row][col+1:]])
-    # print (board[row+1:])
-    # print ("-----------")
     return board[0:row] + [board[row][0:col] + [1,] + board[row][col+1:]] + board[row+1:]
 
 # Get list of successors of given board state
@@ -42,10 +35,6 @@ def successors(board):
 
 # Get list of successors of given board state, A BETTER SOLUTION
 def successors2(board):
-    # if count_pieces(board) < N:
-    #     return [ add_piece(board, r, c) for r in range(0, N) for c in range(0,N) if count_on_row(board, r) == 0 and count_on_col(board, c) == 0 ]
-    # else:
-    #     return []
     return [add_piece(board, r, c) for r in range(0, N) for c in range(0, N) \
         if count_on_row(board, r) == 0 and count_on_col(board, c) == 0]\
         if count_pieces(board) < N else []
@@ -75,10 +64,10 @@ def solve(initial_board):
 
 # This is N, the size of the board. It is passed through command line arguments.
 N = int(sys.argv[1])
-Method = sys.argv[2]
+Method = sys.argv[2] if sys.argv.__len__() > 2 else 'DFS'
 index = 0 if Method == 'BFS' else -1
-print ("System arg 0: ", N)
-print ("System arg 1: ", Method, ", pop index: ", index)
+# print ("System arg 1: ", N)
+# print ("System arg 2: ", Method, ", pop index: ", index)
 
 # The board is stored as a list-of-lists. Each inner list is a row of the board.
 # A zero in a given square indicates no piece, and a 1 indicates a piece.
