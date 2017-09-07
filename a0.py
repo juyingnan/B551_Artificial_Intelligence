@@ -10,18 +10,22 @@
 import sys
 
 
-# Count # of pieces in given row
+# Detect if the given position is conflict
+# coordinate is (row, col), row = count_pieces(board)
 def is_conflict(board, col):
     row = count_pieces(board)
+    # the preset disabled coordinate
     if row == X and col == Y:
         return True
-    for item in board:
-        if item == col:
-            return True
-        if isNqueen \
-                and (board.index(item) + item == row + col
-                     or board.index(item) - item == row - col):
-            return True
+
+    # diagonal detect
+    if isNqueen:
+        item_index = 0
+        for item in board:
+            if item_index + item == row + col \
+                    or item_index - item == row - col:
+                return True
+            item_index += 1
     return False
 
 
@@ -42,12 +46,12 @@ def add_piece(board, col):
     new_board = list(board)
     new_board.append(col)
     return new_board
-    # return list(board).append(col)
 
 
 # Get list of successors of given board state
 def successors(board):
-    return [add_piece(board, col) for col in range(0, N) \
+    # return [add_piece(board, col) for col in range(0, N) if col not in board\
+    return [add_piece(board, col) for col in list(set(range(0, N)) - set(board)) \
             if not is_conflict(board, col)] \
         if count_pieces(board) < N \
         else []
@@ -58,14 +62,19 @@ def is_goal(board):
     return len(board) == N
 
 
-# Solve the problem!
 def solve(initial_board):
+    count = 0
     fringe = successors(initial_board)
+    for item in fringe:
+        if is_goal(item):
+            return (item)
     while len(fringe) > 0:
         for s in successors(fringe.pop()):
             if is_goal(s):
+                # count += 1
                 return (s)
             fringe.append(s)
+    # print (count)
     return False
 
 
@@ -89,9 +98,12 @@ Y -= 1
 # print("System arg 3: ", X)
 # print("System arg 4: ", Y)
 
-# The board is stored as a list.
-# Each item is a row of the board.
-# A zero in a given square indicates no piece, and a 1 indicates a piece.
+# The board is stored as an empty list.
 initial_board = []
+
+# from time import time
+# start = time()
 solution = solve(initial_board)
+# stop = time()
+# print(stop - start)
 print(printable_board(solution) if solution else "Sorry, no solution found. :(")
