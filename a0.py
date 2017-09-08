@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # a0.py : Solve the N-Rooks & N-Queens problem!
-# Yingnan Ju, Sep 2017
+# D. Crandall, 2016
+# Updated by Zehua Zhang, 2017
+# Updated by Yingnan Ju, Sep 2017
 #
 # The N-rooks problem is: Given an empty NxN chessboard, place N rooks on the board so that no rooks
 # can take any other, i.e. such that no two rooks share the same row or column.
