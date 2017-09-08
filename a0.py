@@ -10,7 +10,7 @@
 # can take any other, i.e. such that no two queens share the same row or column or diagonal.
 
 import sys
-
+import random
 
 # Detect if the given position is conflict
 # coordinate is (row, col), row = count_pieces(board)
@@ -54,7 +54,9 @@ def add_piece(board, col):
 # Get list of successors of given board state
 def successors(board):
     # return [add_piece(board, col) for col in range(0, N) if col not in board\
-    return [add_piece(board, col) for col in list(set(range(0, N)) - set(board)) \
+    random_list = list(set(range(0, N)) - set(board))
+    random.shuffle(random_list)
+    return [add_piece(board, col) for col in random_list\
             if not is_conflict(board, col)] \
         if count_pieces(board) < N \
         else []
@@ -108,6 +110,7 @@ initial_board = []
 
 # from time import time
 # start = time()
+# for i in range(0,1000):
 solution = solve(initial_board)
 # stop = time()
 # print(stop - start)
