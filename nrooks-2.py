@@ -33,14 +33,7 @@ def add_piece(board, row, col):
 def successors(board):
     return [ add_piece(board, r, c) for r in range(0, N) for c in range(0,N) ]
 
-# Get list of successors of given board state, A BETTER SOLUTION
 def successors2(board):
-    return [add_piece(board, r, c) for r in range(0, N) for c in range(0, N) \
-        if count_on_row(board, r) == 0 and count_on_col(board, c) == 0]\
-        if count_pieces(board) < N else []
-
-# Get list of successors of given board state, A MUCH BETTER SOLUTION
-def successors3(board):
     c = count_pieces(board)
     return [add_piece(board, r, c) for r in range(0, N) \
         if count_on_row(board, r) == 0]\
@@ -56,7 +49,7 @@ def is_goal(board):
 def solve(initial_board):
     fringe = [initial_board]
     while len(fringe) > 0:
-        for s in successors3( fringe.pop(index) ):
+        for s in successors2( fringe.pop(index) ):
             if is_goal(s):
                 return(s)
             fringe.append(s)
