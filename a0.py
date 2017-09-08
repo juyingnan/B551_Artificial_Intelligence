@@ -16,6 +16,7 @@ import sys
 # coordinate is (row, col), row = count_pieces(board)
 def is_conflict(board, col):
     row = count_pieces(board)
+
     # the preset disabled coordinate
     if row == X and col == Y:
         return True
@@ -84,8 +85,10 @@ def solve(initial_board):
 # sys.argv[1] is 'nqueen' (default) or 'nrook'
 Method = sys.argv[1] if sys.argv.__len__() > 1 else 'nqueen'
 isNqueen = False if Method == 'nrook' else True
+
 # sys.argv[2] is the size of the board
 N = int(sys.argv[2]) if sys.argv.__len__() > 2 else 8
+
 # sys.argv[3]&[4] are the X & Y or the coordinate where no rook or queen could be set
 # Either X or Y == 0 means there is no such coordinate
 X = int(sys.argv[3]) if sys.argv.__len__() > 3 else 0
