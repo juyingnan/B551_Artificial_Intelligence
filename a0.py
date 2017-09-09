@@ -12,6 +12,7 @@
 import sys
 import random
 
+
 # Detect if the given position is conflict
 # coordinate is (row, col), row = count_pieces(board)
 def is_conflict(board, col):
@@ -56,7 +57,7 @@ def successors(board):
     # return [add_piece(board, col) for col in range(0, N) if col not in board\
     random_list = list(set(range(0, N)) - set(board))
     random.shuffle(random_list)
-    return [add_piece(board, col) for col in random_list\
+    return [add_piece(board, col) for col in random_list \
             if not is_conflict(board, col)] \
         if count_pieces(board) < N \
         else []
