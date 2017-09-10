@@ -117,3 +117,5 @@ solution = solve(initial_board)
 # print(stop - start)
 if solution:
     print(printable_board(solution))
+else:
+    print(printable_board([-i for i in range(1, N + 1)]))
