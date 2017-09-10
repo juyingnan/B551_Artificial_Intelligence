@@ -115,4 +115,5 @@ initial_board = []
 solution = solve(initial_board)
 # stop = time()
 # print(stop - start)
-print(printable_board(solution) if solution else "Sorry, no solution found. :(")
+if solution:
+    print(printable_board(solution))
